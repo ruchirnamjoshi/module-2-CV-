@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Main Application Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('measure') }}">Measure Object Dimensions</a></li>
+                <li><a href="{{ url_for('upload_video') }}">Create Panorama from Video</a></li>
+                <li><a href="{{ url_for('integral_feed') }}">View Integral Image Feed</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
+

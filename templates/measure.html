@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Measure Object Dimensions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        // Fetches measurements from the server and updates the display
+        function fetchMeasurements() {
+            fetch('{{ url_for("measurements") }}')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('width').textContent = `Width: ${data.width.toFixed(2)} mm`;
+                    document.getElementById('height').textContent = `Height: ${data.height.toFixed(2)} mm`;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(fetchMeasurements, 1000); // Update every second
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Object Dimensions</h1>
+        <img src="{{ url_for('video_feed') }}" id="videoFeed" width="640" height="480" alt="Video feed not available">
+        <div id="measurements">
+            <p id="width">Width: 0 mm</p>
+            <p id="height">Height: 0 mm</p>
+        </div>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>
